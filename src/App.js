@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import 'h8k-components';
 import ProductList from "./components/product-list";
@@ -21,6 +21,32 @@ class App extends Component {
             },
             products
         }
+
+        this.handleCartClick = (item) => {
+
+            const copyItems = [...this.state.cart.items]
+
+            if (copyItems[item]) {
+                copyItems[item].quantity++
+            } else {
+                const newItem = { "item": item, quantity: 1 }
+                copyItems.push(newItem)
+            }
+
+            const copyProducts = [...this.state.products]
+
+            copyProducts.forEach(copyProduct => {
+
+                if (copyProduct.name === item) {
+                    copyProduct.cartQuantity++
+                }
+
+            })
+
+            this.setState({ cart: { items: copyItems } });
+            this.setState({ products: copyProducts });
+
+        }
     }
 
 
@@ -29,8 +55,8 @@ class App extends Component {
             <div>
                 <h8k-navbar header={title}></h8k-navbar>
                 <div className="layout-row shop-component">
-                    <ProductList products={this.state.products}/>
-                    <Cart cart={this.state.cart}/>
+                    <ProductList products={this.state.products} handleCartClick={this.handleCartClick} />
+                    <Cart cart={this.state.cart} />
                 </div>
             </div>
         );
