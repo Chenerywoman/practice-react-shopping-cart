@@ -25,13 +25,8 @@ class App extends Component {
         this.handleCartClick = (item) => {
 
             const copyItems = [...this.state.cart.items]
-
-            if (copyItems[item]) {
-                copyItems[item].quantity++
-            } else {
-                const newItem = { "item": item, quantity: 1 }
-                copyItems.push(newItem)
-            }
+            const newItem = { item: item, quantity: 1 }
+            copyItems.push(newItem)
 
             const copyProducts = [...this.state.products]
 
@@ -47,15 +42,63 @@ class App extends Component {
             this.setState({ products: copyProducts });
 
         }
-    }
 
+        this.increaseItems = (item) => {
+
+            const copyProducts = [...this.state.products]
+            const copyItems = [...this.state.cart.items]
+
+            const productToIncrease = copyProducts.find(product => product.name === item);
+            const indexOfProduct = copyProducts.findIndex(product => product.name === item);
+            productToIncrease.cartQuantity++
+            copyProducts.splice(indexOfProduct, 1, productToIncrease);
+
+            copyItems.forEach(copyItem => {
+
+                if (copyItem.item === item) {
+
+                    copyItem.quantity++;
+                }
+            })
+
+            this.setState({ products: copyProducts });
+            this.setState({ cart: { items: copyItems } })
+        }
+
+        this.decreaseItems = (item) => {
+
+            const copyProducts = [...this.state.products]
+            const copyItems = [...this.state.cart.items]
+
+            copyProducts.forEach(copyProduct => {
+
+                if (copyProduct.name === item & copyProduct.cartQuantity !== 0) {
+                    copyProduct.cartQuantity--
+                }
+            })
+
+            const itemToDecrease = copyItems.find(copyItem => copyItem.item === item);
+            const indexOfItemToDecrease = copyItems.findIndex((copyItem => copyItem.item === item));
+
+            if (itemToDecrease.quantity === 1) {
+                copyItems.splice(indexOfItemToDecrease, 1)
+            } else {
+                copyItems[indexOfItemToDecrease].quantity--
+            }
+
+            this.setState({ products: copyProducts });
+            this.setState({ cart: { items: copyItems } });
+
+        }
+
+    }
 
     render() {
         return (
             <div>
                 <h8k-navbar header={title}></h8k-navbar>
                 <div className="layout-row shop-component">
-                    <ProductList products={this.state.products} handleCartClick={this.handleCartClick} />
+                    <ProductList products={this.state.products} handleCartClick={this.handleCartClick} increaseItems={this.increaseItems} decreaseItems={this.decreaseItems} />
                     <Cart cart={this.state.cart} />
                 </div>
             </div>

@@ -31,7 +31,8 @@ export default class ProductList extends Component {
                                     }
                                     {product.cartQuantity &&
                                         <div className="layout-row justify-content-between align-items-center">
-                                            <button className="x-small icon-only outlined"
+
+                                            <button onClick={() => this.props.decreaseItems(product.name)} className="x-small icon-only outlined"
                                                 data-testid="btn-quantity-subtract">
                                                 <i className="material-icons">remove</i>
                                             </button>
@@ -40,7 +41,7 @@ export default class ProductList extends Component {
                                                 disabled
                                                 className="cart-quantity" data-testid="cart-quantity" value={product.cartQuantity} />
 
-                                            <button className="x-small icon-only outlined"
+                                            <button onClick={() => this.props.increaseItems(product.name)} className="x-small icon-only outlined"
                                                 data-testid="btn-quantity-add">
                                                 <i className="material-icons">add</i>
                                             </button>
