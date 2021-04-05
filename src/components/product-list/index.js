@@ -4,6 +4,8 @@ import "./index.css";
 export default class ProductList extends Component {
     constructor() {
         super();
+      
+
     }
 
     render() {
@@ -23,7 +25,7 @@ export default class ProductList extends Component {
                                 </div>
                                 <div className="card-actions justify-content-center pa-4">
 
-                                    <button className="x-small outlined" data-testid="btn-item-add">
+                                    <button onClick={handleClick} className="x-small outlined" data-testid="btn-item-add">
                                         Add To Cart
                                     </button>
 
