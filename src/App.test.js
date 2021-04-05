@@ -1,11 +1,11 @@
 import React from 'react';
 import App from './App';
-import {render, fireEvent, cleanup, within} from '@testing-library/react';
+import { render, fireEvent, cleanup, within } from '@testing-library/react';
 
 import '@testing-library/jest-dom/extend-expect';
 
 
-const renderApp = () => render(<App/>);
+const renderApp = () => render(<App />);
 
 afterEach(() => {
     cleanup()
@@ -16,15 +16,15 @@ const IDMAPS = {
     SUBTRACT_BTN: 'btn-quantity-subtract',
     ADD_TO_CART_BTN: 'btn-item-add',
     QUANTITY_INPUT: 'cart-quantity',
-    CART_ITEM_QUANTITY : 'cart-item-quantity',
-    CART_ITEM_NAME : 'cart-item-name',
+    CART_ITEM_QUANTITY: 'cart-item-quantity',
+    CART_ITEM_NAME: 'cart-item-name',
     PRODUCT_ITEMS: ['product-item-0', 'product-item-1', 'product-item-2', 'product-item-3', 'product-item-4', 'product-item-5']
 }
 
 test('Add item to cart', async () => {
     let addToCartButton, cartQuantity, item;
     const {
-         queryByTestId
+        queryByTestId
     } = renderApp();
     expect(queryByTestId('cart-item-0')).toBeNull();
     item = queryByTestId(IDMAPS.PRODUCT_ITEMS[1]);

@@ -1,14 +1,14 @@
 # React: HackerShop Shopping Cart
 
+This was a test on HackerRank to add and remove items from a shopping cart in React class-based components.
+
+The tests and the components were pre-written by HackerRank.  The task was to create the functionality required below.
+
 ## Environment 
 
 - React Version: 16.13.1
 - Node Version: ^12.18.3
 - Default Port: 8000
-
-## Application Demo:
-
-![](https://hrcdn.net/s3_pub/istreet-assets/gMzCl_zemNrL_71YPagyqg/hackershop-shopping-cart.gif)
 
 ## Functionality Requirements
 
@@ -63,17 +63,3 @@ _Note: Please note that the component has the above data-testid attributes for t
 
 **Read Only Files**
 - [src/App.test.js]
-
-**Commands**
-- run: 
-```bash
-bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm start
-```
-- install: 
-```bash
-bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm install
-```
-- test: 
-```bash
-bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm test
-```
